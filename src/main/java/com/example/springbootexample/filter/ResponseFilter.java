@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.CacheControl;
 
-@WebFilter("/*")
+@WebFilter("/alpha-vantage/*")
 public class ResponseFilter implements Filter {
 	
     @Override

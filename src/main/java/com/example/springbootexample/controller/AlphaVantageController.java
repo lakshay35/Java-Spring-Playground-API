@@ -31,7 +31,6 @@ public class AlphaVantageController {
     public ResponseEntity<String> index() {
     	
         return ResponseEntity.ok()
-        		.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS).cachePrivate())
         		.body("Alpha Vantage Cer is dsfdsfdfworking!!");
     }
     
@@ -65,7 +64,6 @@ public class AlphaVantageController {
 //        counter++;
         
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.noCache().cachePrivate())
                 .contentLength(file.length())
                 .contentType(MediaType.TEXT_HTML)
                 .body(resource);

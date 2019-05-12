@@ -5,7 +5,15 @@ import com.example.springbootexample.model.Credentials;
 import com.example.springbootexample.model.PasswordChange;
 import com.example.springbootexample.model.Response;
 import com.example.springbootexample.service.UserService;
+import com.example.springbootexample.task.SchedulesTasks;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -40,5 +48,4 @@ public class UserController {
     public Response<User> changePassword(@RequestBody PasswordChange request) {
         return this.service.changePassword(request);
     }
-
 }
