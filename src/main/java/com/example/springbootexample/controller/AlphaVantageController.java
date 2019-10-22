@@ -1,31 +1,29 @@
 package com.example.springbootexample.controller;
 
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+// import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+// import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.IOUtils;
+// import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import sun.misc.Request;
+// import sun.misc.Request;
 import org.springframework.core.io.Resource;
 
 @RestController
 @RequestMapping("/alpha-vantage")
 public class AlphaVantageController {
-
-	private static int counter = 1234;
 	
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public ResponseEntity<String> index() {
@@ -59,8 +57,6 @@ public class AlphaVantageController {
         File file = new File("src/main/resources/static/test.html");
         Path path = Paths.get(file.getAbsolutePath());
         ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-        
-        String c = Integer.toString(counter);
 //        counter++;
         
         return ResponseEntity.ok()

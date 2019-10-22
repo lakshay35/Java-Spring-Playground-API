@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: spring-api
+spec:
+  selector:
+    matchLabels:
+      app: spring-api
+  replicas: 6 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: spring-api
+    spec:
+      containers:
+      - name: spring-api
+        image: lakshay35/spring-api:1.0.0 #update
+        ports:
+        - containerPort: 8082

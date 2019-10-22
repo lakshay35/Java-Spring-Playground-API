@@ -19,7 +19,7 @@ public class TradeController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String index() {
-        return "Trade Controller works!";
+        return "Trade Controller workssssss!";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/add-trade")

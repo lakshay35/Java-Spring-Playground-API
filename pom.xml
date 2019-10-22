@@ -10,12 +10,13 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>spring-boot-example</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>spring-boot-example</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<docker.image.prefix>springio</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -51,30 +52,62 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.6</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.integration</groupId>
+		    <artifactId>spring-integration-ftp</artifactId>
+		</dependency>
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt</artifactId>
 		    <version>0.6.0</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.integration</groupId>
-		    <artifactId>spring-integration-ftp</artifactId>
-		    <version>5.2.0.M4</version>
-		</dependency>
 		
 	</dependencies>
-	
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludeDevTools>true</excludeDevTools>
+				</configuration>
 			</plugin>
 			<plugin>
 	          <groupId>org.apache.maven.plugins</groupId>
 	          <artifactId>maven-surefire-plugin</artifactId>
-	        </plugin>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>package</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<filters>
 			

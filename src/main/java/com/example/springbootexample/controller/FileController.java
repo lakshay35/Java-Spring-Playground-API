@@ -42,10 +42,13 @@ public class FileController {
 
     	String fileName = file.getName();
     	
+    	this.fileStorageService.storeFile(file);
+    	
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/file/downloadFile/")
                 .path(fileName)
                 .toUriString(); 
+        
 
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
